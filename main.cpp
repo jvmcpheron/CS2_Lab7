@@ -1,32 +1,3 @@
-# CS2_Lab7
-
-## Introduction
-One game that works based on a queue is the game of War in cards.  In War, the deck of cards is shuffled and then the cards are dealt to the two players so each has half of the cards.  The game then consists of a series of turns:
-
-do
-
-   player 1 puts their top card down
-
-   player 2 puts their top card down
-
-   if player 1's card has a higher number (A > K > Q > J > 10 > 9 > 8 > 7 > 6 > 5 > 4 > 3 > 2) then
-       player 1 collects both cards and adds them to their pile of cards (their queue)
-   else if player 2's card has a higher number
-       player 2 collects both cards and adds them to their pile of cards
-   else a "War" occurs
-       players add their top 3 cards to the played pile and "play" their next card, and the process repeats
-
-until one player is out of cards
-
-the other player is declared the winner
-
-We are going to play a simplified version of the game that would not be very fun, as the winner will always be the player dealt the Ace of Spaces.  In our version, if the two cards have the same number, then ties will be broken by considering the suit with Spades > Hearts > Diamonds > Clubs.
-
-So, if one player played the Ace of Spades and the other the Ace of Diamonds the person playing the Ace of Spades would win because the cards have the same number (Ace) and Spades > Diamonds.
-
-## The Code
-I wrote a set of code that implements a PlayingCard type and sets up a random initial deal of cards.  Your job is to write code to complete the game.
-
 #include <iostream>
 #include <list>
 #include <stdlib.h>
@@ -107,9 +78,3 @@ int main() {
     // Play the game until one players wins and report how many rounds that took
     return 0;
 }
-At the end of the game my code prints a line describing how the game went:
-
-Player 2 won in 304 rounds
-
-## What to Submit
-Submit your solution as a CPP file. Give the file the name AssignmentTypeNumberLastNameFirstName.cpp (so, for example, my submission for Lab 3 would be named Lab3MaclinRichard.cpp). You should also include your first and last name in the file as a comment. Add a long comment in your code showing examples (at least five) of how many rounds the game took to play out and who won.. 

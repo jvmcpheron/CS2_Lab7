@@ -1,3 +1,26 @@
+//Jane McPheron
+
+/*
+
+EXAMPLES OF OUTPUT
+
+jvmcpheron@dyn-10-140-246-187 CS2_Lab7 % ./main
+Player 1 won in 190 rounds
+jvmcpheron@dyn-10-140-246-187 CS2_Lab7 % ./main
+Player 1 won in 144 rounds
+jvmcpheron@dyn-10-140-246-187 CS2_Lab7 % ./main
+Player 1 won in 588 rounds
+jvmcpheron@dyn-10-140-246-187 CS2_Lab7 % ./main
+Player 2 won in 714 rounds
+jvmcpheron@dyn-10-140-246-187 CS2_Lab7 % ./main
+Player 2 won in 350 rounds
+jvmcpheron@dyn-10-140-246-187 CS2_Lab7 % ./main
+Player 1 won in 242 rounds
+jvmcpheron@dyn-10-140-246-187 CS2_Lab7 % ./main
+Player 2 won in 336 rounds
+
+*/
+
 #include <iostream>
 #include <list>
 #include <stdlib.h>
@@ -127,7 +150,7 @@ void playWarGame() {
 
     queue<PlayingCard> p1queue;
     queue<PlayingCard> p2queue;
-    
+
     dealCards(cards, p1queue, p2queue);
     
     int rounds = playWar(p1queue, p2queue);

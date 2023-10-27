@@ -82,19 +82,25 @@ void dealCards(list<PlayingCard> cards, queue<PlayingCard> & p1queue, queue<Play
 
 bool isPlayer1Win(PlayingCard card1, PlayingCard card2) {
     if (card1.getCardNo() > card2.getCardNo()) {
+
         return true;
     }
     else if (card1.getCardNo() < card2.getCardNo()) {
+
         return false;
     }
-    else { // Same card number, compare suits
+    else { 
+
         return card1.getSuitNum() < card2.getSuitNum();
     }
 }
 
 int playWar(queue<PlayingCard>& p1queue, queue<PlayingCard>& p2queue) {
+
     int rounds = 0;
+
     while (!p1queue.empty() && !p2queue.empty()) {
+
         rounds++;
         PlayingCard p1Card = p1queue.front();
         PlayingCard p2Card = p2queue.front();
@@ -102,10 +108,13 @@ int playWar(queue<PlayingCard>& p1queue, queue<PlayingCard>& p2queue) {
         p2queue.pop();
 
         if (isPlayer1Win(p1Card, p2Card)) {
+
             p1queue.push(p1Card);
             p1queue.push(p2Card);
+
         }
         else {
+
             p2queue.push(p2Card);
             p2queue.push(p1Card);
         }
@@ -115,8 +124,10 @@ int playWar(queue<PlayingCard>& p1queue, queue<PlayingCard>& p2queue) {
 
 void playWarGame() {
     list<PlayingCard> cards = generateShuffledDeck();
+
     queue<PlayingCard> p1queue;
     queue<PlayingCard> p2queue;
+    
     dealCards(cards, p1queue, p2queue);
     
     int rounds = playWar(p1queue, p2queue);

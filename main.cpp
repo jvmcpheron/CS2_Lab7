@@ -3,6 +3,8 @@
 #include <stdlib.h>
 #include <vector>
 #include <queue>
+#include <ctime>
+#include <string>
 using namespace std;
 
 class PlayingCard {
@@ -10,6 +12,15 @@ private:
     int suitNo;
     int cardNo;
 public:
+
+    //constructors
+    int getCardNo(){
+        return cardNo;
+    }
+    int getSuitNum(){
+        return suitNo;
+    }
+
     friend bool operator<(const PlayingCard &card1, const PlayingCard &card2) {
         return ((card1.cardNo < card2.cardNo) ||
                 ((card1.cardNo == card2.cardNo) && (card1.suitNo < card2.suitNo)));
@@ -69,12 +80,56 @@ void dealCards(list<PlayingCard> cards, queue<PlayingCard> & p1queue, queue<Play
 
 }
 
-int main() {
+bool isPlayer1Win(PlayingCard card1, PlayingCard card2) {
+    if (card1.getCardNo() > card2.getCardNo()) {
+        return true;
+    }
+    else if (card1.getCardNo() < card2.getCardNo()) {
+        return false;
+    }
+    else { // Same card number, compare suits
+        return card1.getSuitNum() < card2.getSuitNum();
+    }
+}
+
+int playWar(queue<PlayingCard>& p1queue, queue<PlayingCard>& p2queue) {
+    int rounds = 0;
+    while (!p1queue.empty() && !p2queue.empty()) {
+        rounds++;
+        PlayingCard p1Card = p1queue.front();
+        PlayingCard p2Card = p2queue.front();
+        p1queue.pop();
+        p2queue.pop();
+
+        if (isPlayer1Win(p1Card, p2Card)) {
+            p1queue.push(p1Card);
+            p1queue.push(p2Card);
+        }
+        else {
+            p2queue.push(p2Card);
+            p2queue.push(p1Card);
+        }
+    }
+    return rounds;
+}
+
+void playWarGame() {
     list<PlayingCard> cards = generateShuffledDeck();
     queue<PlayingCard> p1queue;
     queue<PlayingCard> p2queue;
-    dealCards(cards,p1queue,p2queue);
-    int rounds = 0;
-    // Play the game until one players wins and report how many rounds that took
+    dealCards(cards, p1queue, p2queue);
+    
+    int rounds = playWar(p1queue, p2queue);
+
+    if (p1queue.empty()) {
+        cout << "Player 2 won in " << rounds << " rounds" << endl;
+    }
+    else if (p2queue.empty()) {
+        cout << "Player 1 won in " << rounds << " rounds" << endl;
+    }
+}
+
+int main() {
+    playWarGame();
     return 0;
 }
